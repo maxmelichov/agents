@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "livekit-plugins-audioforge"
+dynamic = ["version"]
+description = "LiveKit Agents plugin for the self-hosted audioforge speech server: streaming STT, VAD and speaker-aware turn detection"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10.0"
+authors = [{ name = "Max Melichov" }]
+keywords = ["voice", "ai", "realtime", "audio", "livekit", "webrtc", "asr", "vad", "turn-detection", "diarization"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Multimedia :: Sound/Audio",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3 :: Only",
+]
+dependencies = [
+    "livekit-agents>=1.8.3",
+    "audioforge-client>=0.1.0,<0.2",
+    "numpy>=1.26",
+]
+
+[project.urls]
+Documentation = "https://github.com/maxmelichov/nvidia-audio-models"
+Website = "https://github.com/maxmelichov/nvidia-audio-models"
+Source = "https://github.com/livekit/agents"
+
+[tool.hatch.version]
+path = "livekit/plugins/audioforge/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["livekit"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/livekit"]
+
+[tool.uv]
+exclude-newer = "7 days"
+exclude-newer-package = { livekit-agents = "0 days" }
